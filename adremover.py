@@ -24,8 +24,6 @@ class AdRemover(object):
 
         for rules_file in rules_files:
             with open(rules_file, 'r',encoding='utf8',errors='ignore') as f:
-                # print(rules_files) # txt files tuple ('ruadlist+easylist.txt', '1.txt')
-                print(f)
                 for line in f:
                     # elemhide rules are prefixed by ## in the adblock filter syntax
                     if line[:2] == '##':
@@ -43,5 +41,6 @@ class AdRemover(object):
 
         The object passed to this method will be modified in place."""
 
-        for elem in tree.xpath(self.xpath_query):
+        # print(tree.iter(self.xpath_query))
+        for elem in tree.iter(self.xpath_query):
             elem.getparent().remove(elem)

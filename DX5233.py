@@ -19,4 +19,5 @@ document = lxml.html.document_fromstring(html)
 remover.remove_ads(document)
 clean_html = tostring(document).decode("utf-8")
 
-print(clean_html)
+with open('readme.html', 'w') as f:
+    f.write(clean_html)
