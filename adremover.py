@@ -1,6 +1,5 @@
 import cssselect
 
-
 class AdRemover(object):
     """
     This class applies elemhide rules from AdBlock Plus to an lxml
@@ -23,7 +22,7 @@ class AdRemover(object):
         rules = []
 
         for rules_file in rules_files:
-            with open(rules_file, 'r',encoding='utf8',errors='ignore') as f:
+            with open(rules_file, 'r',errors='ignore',encoding='utf-8') as f:
                 for line in f:
                     # elemhide rules are prefixed by ## in the adblock filter syntax
                     if line[:2] == '##':
@@ -36,11 +35,18 @@ class AdRemover(object):
         # create one large query by joining them the xpath | (or) operator
         self.xpath_query = '|'.join(rules)
 
+
     def remove_ads(self, tree):
         """Remove ads from an lxml document or element object.
 
         The object passed to this method will be modified in place."""
-
-        # print(tree.iter(self.xpath_query))
-        for elem in tree.iter(self.xpath_query):
+        # print("ttttttt")
+        print("**** help-1 *****")
+        print("Type Tree:",type(tree))
+        print("+++++++++++ tree:", tree)
+        print(tree.iter(self.xpath_query))
+        for elem in tree.xpath(self.xpath_query):
             elem.getparent().remove(elem)
+        # print("ttttttt")
+            
+            
