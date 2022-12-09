@@ -1,4 +1,6 @@
 import cssselect
+from lxml import etree
+from io import StringIO
 
 class AdRemover(object):
     """
@@ -40,12 +42,8 @@ class AdRemover(object):
         """Remove ads from an lxml document or element object.
 
         The object passed to this method will be modified in place."""
-        # print("ttttttt")
-        print("**** help-1 *****")
-        print("Type Tree:",type(tree))
-        print("+++++++++++ tree:", tree)
-        print(tree.iter(self.xpath_query))
-        for elem in tree.xpath(self.xpath_query):
+       
+        for elem in etree.XPath(self.xpath_query ):
             elem.getparent().remove(elem)
         # print("ttttttt")
             
